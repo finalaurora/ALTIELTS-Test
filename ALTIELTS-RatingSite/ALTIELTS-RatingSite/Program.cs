@@ -23,7 +23,6 @@ namespace ALTIELTS_RatingSite
                 try
                 {
                     var context = services.GetRequiredService<RatingsContext>();
-                    DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {

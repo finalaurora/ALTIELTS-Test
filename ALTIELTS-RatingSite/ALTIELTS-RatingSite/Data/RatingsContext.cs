@@ -17,10 +17,13 @@ namespace ALTIELTS_RatingSite.Data
 
         public DbSet<Rating> Ratings { get; set; }
 
+        public DbSet<Login> Logins { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>().ToTable("Department");
             modelBuilder.Entity<Rating>().ToTable("Rating");
+            modelBuilder.Entity<Login>().ToTable("Login");
         }
     }
 }

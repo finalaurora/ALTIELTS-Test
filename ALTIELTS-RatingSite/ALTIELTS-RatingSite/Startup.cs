@@ -26,6 +26,10 @@ namespace ALTIELTS_RatingSite
         {
             services.AddDbContext<RatingsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ALTIELTS_RatingSiteContext")));
             services.AddControllersWithViews();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,13 +48,14 @@ namespace ALTIELTS_RatingSite
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            DbInitializer.Initialize(app);
         }
     }
 }
