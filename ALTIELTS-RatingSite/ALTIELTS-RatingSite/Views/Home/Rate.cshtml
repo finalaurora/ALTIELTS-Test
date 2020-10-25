@@ -10,18 +10,18 @@
         <div style="margin: 5px">
             <img src="~/images/emoji/happy.png" height="100" style="display:block; margin-left: auto; margin-right: auto" />
         </div>
-        <div class="row d-flex justify-content-center" style="margin:10px">
-            <img class="star-1 star" src="~/images/star-not-rating.png" height="50" />
-            <img class="star-2 star" src="~/images/star-not-rating.png" height="50" />
-            <img class="star-3 star" src="~/images/star-not-rating.png" height="50" />
-            <img class="star-4 star" src="~/images/star-not-rating.png" height="50" />
-            <img class="star-5 star" src="~/images/star-not-rating.png" height="50" />
+        <div class="row d-flex rating-star-block justify-content-center" style="margin:10px">
+            <a class="star outline" href="#" rating="1" onclick="@{Model.Point = 1;}">1</a>
+            <a class="star outline" href="#" rating="2" onclick="@{Model.Point = 2;}">2</a>
+            <a class="star outline" href="#" rating="3" onclick="@{Model.Point = 3;}">3</a>
+            <a class="star outline" href="#" rating="4" onclick="@{Model.Point = 4;}">4</a>
+            <a class="star outline" href="#" rating="5" onclick="@{Model.Point = 5;}">5</a>
         </div>
         <div style="margin: 10px">
             <form>
                 <textarea class="form-control" asp-for="Comment" style="width: 100%" placeholder="Enter your comment here"></textarea>
                 <div class="row d-flex justify-content-center" style="margin: 10px">
-                    <button type="submit" asp-action="Rate" formmethod="post" class="btn btn-danger rounded-pill" style="margin-left: auto; margin-right: auto">
+                    <button type="submit" onclick="submitRating" class="btn btn-danger rounded-pill" style="margin-left: auto; margin-right: auto">
                         <div class="text-center font-weight-bold">Gửi phản hồi</div>
                     </button>
                 </div>

@@ -53,10 +53,13 @@ namespace ALTIELTS_RatingSite.Controllers
 
         public IActionResult Rate(int deptId, string passCode)
         {
+            SessionPasscode = passCode;
             var passcodes = _context.Departments.Select(l => l.PassCode);
             if (passcodes.FirstOrDefault(s => s == passCode) != null)
             {
-                return View("Rate");
+                deptId = _context.Departments.FirstOrDefault(dept => dept.PassCode == passCode).ID;
+                Rating model = new Rating { DeptId = deptId };
+                return View("Rate", model);
             }
             return RedirectToAction(nameof(Login));
         }
@@ -66,11 +69,12 @@ namespace ALTIELTS_RatingSite.Controllers
         {
             if(ModelState.IsValid)
             {
+                rating.DateTime = DateTime.UtcNow;
                 _context.Ratings.Add(rating);
                 await _context.SaveChangesAsync();
                 return View("RateComplete",rating);
             }
-            return View("Rate",);
+            return View("Rate");
         }
     }
 }
