@@ -11,5 +11,7 @@ namespace ALTIELTS_RatingSite.Models
         [Key]
         public string Token { get; set; }
         public string PassCode { get; set; }
+
+        public int DeptId { get; set; }
     }
 }

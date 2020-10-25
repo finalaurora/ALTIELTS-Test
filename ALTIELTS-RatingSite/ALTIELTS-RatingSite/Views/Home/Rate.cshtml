@@ -1,11 +1,31 @@
-﻿
+﻿@model ALTIELTS_RatingSite.Models.Rating
 @{
     ViewData["Title"] = "Rate";
 }
-
-<h1>Rate</h1>
-
 <div class="row d-flex justify-content-center">
-    <div class="card col-8" style="background:linear-gradient(crimson,red); outline:1px solid white;">
+    <div class="card col-8 justify-content-center bg-light" style="outline:1px solid white; padding: 10px">
+        <div>
+            <p class="text-md-center font-weight-bold">Câu hỏi tương ứng từng bộ phận</p>
+        </div>
+        <div style="margin: 5px">
+            <img src="~/images/emoji/happy.png" height="100" style="display:block; margin-left: auto; margin-right: auto" />
+        </div>
+        <div class="row d-flex justify-content-center" style="margin:10px">
+            <img class="star-1 star" src="~/images/star-not-rating.png" height="50" />
+            <img class="star-2 star" src="~/images/star-not-rating.png" height="50" />
+            <img class="star-3 star" src="~/images/star-not-rating.png" height="50" />
+            <img class="star-4 star" src="~/images/star-not-rating.png" height="50" />
+            <img class="star-5 star" src="~/images/star-not-rating.png" height="50" />
+        </div>
+        <div style="margin: 10px">
+            <form>
+                <textarea class="form-control" asp-for="Comment" style="width: 100%" placeholder="Enter your comment here"></textarea>
+                <div class="row d-flex justify-content-center" style="margin: 10px">
+                    <button type="submit" asp-action="Rate" formmethod="post" class="btn btn-danger rounded-pill" style="margin-left: auto; margin-right: auto">
+                        <div class="text-center font-weight-bold">Gửi phản hồi</div>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

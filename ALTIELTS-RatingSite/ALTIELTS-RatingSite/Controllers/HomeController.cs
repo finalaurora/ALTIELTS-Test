@@ -18,9 +18,10 @@ namespace ALTIELTS_RatingSite.Controllers
         public string SessionToken = "";
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(RatingsContext context)
+        public HomeController(RatingsContext context, ILogger<HomeController> logger)
         {
             _context = context;
+            _logger = logger;
         }    
 
         public IActionResult Index()
@@ -52,12 +53,24 @@ namespace ALTIELTS_RatingSite.Controllers
 
         public IActionResult Rate(int deptId, string passCode)
         {
-            var passcodes = _context.Logins.Select(l => l.PassCode);
+            var passcodes = _context.Departments.Select(l => l.PassCode);
             if (passcodes.FirstOrDefault(s => s == passCode) != null)
             {
                 return View("Rate");
             }
             return RedirectToAction(nameof(Login));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Rate([Bind("DeptId,Point,Comment")]Rating rating)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Ratings.Add(rating);
+                await _context.SaveChangesAsync();
+                return View("RateComplete",rating);
+            }
+            return View("Rate",);
         }
     }
 }

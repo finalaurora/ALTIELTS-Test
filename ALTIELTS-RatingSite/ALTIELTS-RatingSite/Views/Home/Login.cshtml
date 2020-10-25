@@ -1,4 +1,4 @@
-﻿@model Login
+﻿@model ALTIELTS_RatingSite.Models.Login
 @{ 
     int DepartmentId;
 }
@@ -11,25 +11,25 @@
             <h2 class="text-white">Đăng nhập</h2>
             <img src="~/images/login/arrow-button.png" height="100" />
         </div>
-        <form style="margin: 10px; a">
+        <form style="margin: 10px;">
             <div style="color:white">Enter passcode:</div>
             <div class="form-row">
-                <div class="col"><input type="text" placeholder="Enter passcode" class="form-control-plaintext" asp-for="PassCode" style="color: linen" /></div>
+                <div class="col"><input type="text" placeholder="Enter passcode" class="form-control-plaintext" asp-for="PassCode" style="color: linen"/></div>
             </div>
             <small style="color:white">Kiểm tra lại passcode trước khi nhập</small>
             <div class="row d-flex justify-content-center" style="margin: 10px">
-                <button class="btn text-center bg-light" style="margin: 10px">
+                <div class="btn text-center bg-light" style="margin: 10px" onclick="@{DepartmentId = 1;}">
                     <img src="~/images/login/policeman.png" style="margin: 10px" />
                     <div class="text-danger">Bảo vệ</div>
-                </button>
-                <button class="btn text-center bg-light" style="margin: 10px">
+                </div>
+                <div class="btn text-center bg-light" style="margin: 10px" onclick="@{DepartmentId = 1;}">
                     <img src="~/images/login/bucket.png" style="margin: 10px" />
                     <div class="text-danger">Lao công</div>
-                </button>
-                <button class="btn text-center bg-light" style="margin: 10px">
+                </div>
+                <div class="btn text-center bg-light" style="margin: 10px" onclick="@{DepartmentId = 1;}">
                     <img src="~/images/login/social-care.png" style="margin: 10px" />
                     <div class="text-danger">Chăm sóc học viên</div>
-                </button>
+                </div>
             </div>
             <div class="row d-flex justify-content-center"><input class="btn btn-outline-light rounded-pill col-md-4" type="submit" value="Bắt đầu đánh giá" asp-action="Rate" /></div>
         </form>
